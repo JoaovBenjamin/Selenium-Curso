@@ -47,5 +47,6 @@ public class Main {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
 
         driver.findElement(By.xpath("//button[contains(@class,'submit')]")).click();
+
     }
 }
