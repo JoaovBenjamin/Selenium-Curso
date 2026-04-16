@@ -7,8 +7,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.List;
 
 public class WebElementUITesting {
     static void main() {
@@ -23,6 +25,18 @@ public class WebElementUITesting {
         System.out.println(dropdown.getFirstSelectedOption().getText());
         dropdown.selectByVisibleText("AED");
         System.out.println(dropdown.getFirstSelectedOption().getText());
+
+        WebElement seniorCheckbox = driver.findElement(By.cssSelector("input[id$='ctl00_mainContent_chk_SeniorCitizenDiscount']"));
+
+        System.out.println(seniorCheckbox.isSelected());
+        Assert.assertFalse(seniorCheckbox.isSelected());
+        seniorCheckbox.click();
+        System.out.println(seniorCheckbox.isSelected());
+        Assert.assertTrue(seniorCheckbox.isSelected());
+
+        List<WebElement> allCheckboxes = driver.findElements(By.cssSelector("input[type='checkbox']"));
+        System.out.println("Total de checkboxes: " + allCheckboxes.size());
+        Assert.assertEquals(allCheckboxes.size(), 6);
 
         driver.findElement(By.id("divpaxinfo")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnclosepaxoption")));
