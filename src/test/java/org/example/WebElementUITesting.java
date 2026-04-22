@@ -51,6 +51,23 @@ public class WebElementUITesting {
         driver.findElement(By.xpath("//a[@value='BLR']")).click();
         driver.findElement(By.xpath("(//a[@value='MAA'])[2]")).click();
 
+        driver.findElement(By.cssSelector(".ui-state-default.ui-state-active")).click();
+        System.out.println(driver.findElement(By.id("ctl00_mainContent_view_date2")).isEnabled());
+        System.out.println(driver.findElement(By.id("Div1")).getDomAttribute("style"));
+
+        driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_1")).click();
+        System.out.println(driver.findElement(By.id("Div1")).getDomAttribute("style"));
+
+        if(driver.findElement(By.id("Div1")).getDomAttribute("style").contains("1"))
+        {
+            System.out.println("its enabled");
+            Assert.assertTrue(true);
+        } else {
+            Assert.assertTrue(false);
+        }
+
+        driver.findElement(By.name("ctl00$mainContent$btn_FindFlights")).click();
+
     }
 
 }
